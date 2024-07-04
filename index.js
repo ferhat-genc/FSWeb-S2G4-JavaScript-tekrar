@@ -95,37 +95,80 @@ console.log("Çemberin alanı: " + CemberinAlani(15, pi));
 
 /*  (oto test yok) sayilar dizisi içinde kaç adet sayı olduğunu konsola yazdırın */
 
-let ucetambolunenler,
-	enkucuk,
-	enbuyuk,
-	ucebolunenlerintoplami,
-	besyuzdenkucuksayilar,
-	siralisayilar,
-	tekraredensayilar;
+let enkucuk, enbuyuk, ucebolunenlerintoplami;
 
 // 3a çözümü
 
-/* kodlar buraya */
+for (let i = 0; i < sayilar.length; i++) {
+	if (enkucuk > sayilar[i]) {
+		enkucuk = sayilar[i];
+	}
+	if (enbuyuk < sayilar[i]) {
+		enbuyuk = sayilar[i];
+	}
+}
 
 // 3b çözümü:
 
-/* kodlar buraya */
+const ucetambolunenler = [];
+sayilar.forEach(uceTamBolunenlerLoop);
+function uceTamBolunenlerLoop(sayi, index) {
+	if (sayi % 3 === 0) {
+		ucetambolunenler.push(sayi);
+	}
+}
+console.log("Üçe tam bölünenler dizisi:");
+console.log(ucetambolunenler);
 
 // 3c çözümü:
 
-/* kodlar buraya */
+ucebolunenlerintoplami = ucetambolunenler.reduce(uceTamBolunenleriTopla, 0);
+function uceTamBolunenleriTopla(toplam, yeni) {
+	return toplam + yeni;
+}
+console.log("Üçe tam bölünenlerin toplamı: " + ucebolunenlerintoplami);
 
 // 3d çözümü
 
-/* kodlar buraya */
+const besyuzdenkucuksayilar = sayilar.filter(besYuzdenKucukleriBul);
+function besYuzdenKucukleriBul(sayi) {
+	return sayi < 500;
+}
+console.log("Beşyüzden küçük sayılar dizisi:");
+console.log(besyuzdenkucuksayilar);
 
 // 3e çözümü
 
-/* kodlar buraya */
+const siralisayilar = [...besyuzdenkucuksayilar];
+siralisayilar.sort((a, b) => a - b);
+console.log("Beşyüzden küçük sayıların sıralı dizisi:");
+console.log(siralisayilar);
 
 // 3f çözümü
 
-/* kodlar buraya */
+const sayilarkopya = [...sayilar];
+const tekraredensayilar = [];
+for (let i = 0; i < sayilarkopya.length; i++) {
+	let tekrarSayisi = 1;
+	let tekrarEdenSayi = sayilarkopya[i];
+	if (tekrarEdenSayi != undefined) {
+		for (let j = i + 1; j < sayilarkopya.length; j++) {
+			if (tekrarEdenSayi === sayilarkopya[j]) {
+				tekrarSayisi++;
+				delete sayilarkopya[j];
+			}
+		}
+		if (tekrarSayisi > 1) {
+			const metin = `${tekrarEdenSayi} sayısı ${tekrarSayisi} tekrar edilmiştir`;
+			tekraredensayilar.push(metin);
+			tekrarSayisi = 1;
+		}
+	}
+}
+console.log("Tekrar eden sayılar ve tekrar sayıları: ");
+console.log(tekraredensayilar);
+
+console.log("Sayılar dizisindeki sayıların adeti: " + sayilar.length);
 
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
 
